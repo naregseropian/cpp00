@@ -1,19 +1,19 @@
-#ifndef PHONEBOOK_CLASS_H
-# define PHONEBOOK_CLASS_H
+#ifndef PHONEBOOK_H
+# define PHONEBOOK_H
 
-#include "contact.class.hpp"
+#include "Contact.hpp"
 
 #define PHONEBOOK_SIZE 8
 
-class Phonebook
+class PhoneBook
 {
     private:
         Contact _contacts[PHONEBOOK_SIZE];
         int     _index;
     
     public:
-        Phonebook(void);
-        ~Phonebook(void);
+        PhoneBook(void);
+        ~PhoneBook(void);
         void            displayMessage() const;
         void            createContact();
         void            addContact(Contact &contact);

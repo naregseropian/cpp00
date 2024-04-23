@@ -1,6 +1,4 @@
 #include <iostream>
-#include <stdio.h>
-#include <string.h>
 
 int main(int argc, char **argv)
 {
@@ -10,7 +8,7 @@ int main(int argc, char **argv)
 	{
 		for (int j=1; j < argc; j++)
 		{
-			for (long unsigned int i=0; i < strlen(argv[j]); i++)
+			for (unsigned int i=0; i < strlen(argv[j]); i++)
 			{
 				if (argv[j][i] >= 'a' && argv[j][i] <= 'z')
 					std::cout << (char)toupper(argv[j][i]);

@@ -1,5 +1,5 @@
 NAME = megaphone
-CXX = g++
+CXX = c++
 CXXFLAGS = -Wall -Werror -Wextra -g -std=c++98 -pedantic-errors
 SRCS = megaphone.cpp
 OBJS = $(SRCS:.cpp=.o)

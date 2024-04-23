@@ -1,25 +1,25 @@
 #include <iostream>
-#include "phonebook.class.hpp"
+#include "PhoneBook.hpp"
 
-Phonebook::Phonebook(): _index(0) {}
+PhoneBook::PhoneBook(): _index(0) {}
 
-Phonebook::~Phonebook()
+PhoneBook::~PhoneBook()
 {
     std::cout << "**Have a nice day!**" << std::endl;
 }
 
-void    Phonebook::displayMessage() const
+void    PhoneBook::displayMessage() const
 {
     std::cout << "**My Beautiful PhoneBook**" << std::endl;
 }
 
-void    Phonebook::addContact(Contact &contact)
+void    PhoneBook::addContact(Contact &contact)
 {
     _contacts[_index % 8] = contact;
     _index++;
 }
 
-std::string    Phonebook::transformInput(const std::string &input)
+std::string    PhoneBook::transformInput(const std::string &input)
 {
     std::string transformedString = input;
     if (transformedString.length() > 10)
@@ -34,7 +34,7 @@ std::string    Phonebook::transformInput(const std::string &input)
     return transformedString;
 }
 
-void    Phonebook::createContact()
+void    PhoneBook::createContact()
 {
     std::string firstName, lastName, nickName, phoneNumber, darkestSecret;
 
@@ -57,7 +57,7 @@ void    Phonebook::createContact()
     addContact(newContact);
 }
 
-void    Phonebook::displayContacts()
+void    PhoneBook::displayContacts()
 {
 	std::cout << std::setw(10) << "Index" << "|";
 	std::cout << std::setw(10) << "First name" << "|";
@@ -73,14 +73,20 @@ void    Phonebook::displayContacts()
 	}
 }
 
-void    Phonebook::displayDetailedContact()
+void    PhoneBook::displayDetailedContact()
 {
     std::string index;
     int         i;
 
     std::cout << "See contact detail by entring its index: " << std::endl;
     getline(std::cin, index);
-    i = stoi(index);
+    try {
+        i = stoi(index);
+    } catch (std::out_of_range) {
+        i = -1;
+    } catch (std::invalid_argument) {
+        i = -1;
+    }
     if (i && (i >= 1 && i <= PHONEBOOK_SIZE) && i <= _index)
     {
         i--;
@@ -94,7 +100,7 @@ void    Phonebook::displayDetailedContact()
         std::cout << "Invalid index! No contact found for the given index." << std::endl;
 }
 
-void    Phonebook::mainMenu()
+void    PhoneBook::mainMenu()
 {
     std::string input;
 

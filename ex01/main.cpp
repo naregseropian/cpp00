@@ -1,8 +1,8 @@
-#include "phonebook.class.hpp"
+#include "PhoneBook.hpp"
 
 int main()
 {
-    Phonebook   myPhonebook;
+    PhoneBook   myPhonebook;
 
     myPhonebook.displayMessage();
     myPhonebook.mainMenu();
