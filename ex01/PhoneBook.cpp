@@ -1,19 +1,18 @@
 #include <iostream>
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(): _index(0) {}
+PhoneBook::PhoneBook()
+{
+    std::cout << "**My Beautiful PhoneBook**" << std::endl;
+    _index = 0;
+}
 
 PhoneBook::~PhoneBook()
 {
     std::cout << "**Have a nice day!**" << std::endl;
 }
 
-void    PhoneBook::displayMessage() const
-{
-    std::cout << "**My Beautiful PhoneBook**" << std::endl;
-}
-
-void    PhoneBook::addContact(Contact &contact)
+void    PhoneBook::addContact(Contact& contact)
 {
     _contacts[_index % 8] = contact;
     _index++;
@@ -27,10 +26,6 @@ std::string    PhoneBook::transformInput(const std::string &input)
 		transformedString.resize(9);
 		transformedString.append(".");
 	}
-    if (transformedString.empty())
-	{
-		transformedString = "n/a";
-	}
     return transformedString;
 }
 
@@ -38,23 +33,35 @@ void    PhoneBook::createContact()
 {
     std::string firstName, lastName, nickName, phoneNumber, darkestSecret;
 
-    std::cout << "Enter first name: ";
-    std::getline(std::cin, firstName);
+    while (42)
+    {
+        std::cout << "Enter first name: ";
+        std::getline(std::cin, firstName);
 
-    std::cout << "Enter last name: ";
-    std::getline(std::cin, lastName);
+        std::cout << "Enter last name: ";
+        std::getline(std::cin, lastName);
 
-    std::cout << "Enter nickname: ";
-    std::getline(std::cin, nickName);
+        std::cout << "Enter nickname: ";
+        std::getline(std::cin, nickName);
 
-    std::cout << "Enter phone number: ";
-    std::getline(std::cin, phoneNumber);
+        std::cout << "Enter phone number: ";
+        std::getline(std::cin, phoneNumber);
 
-    std::cout << "Enter darkest secret: ";
-    std::getline(std::cin, darkestSecret);
+        std::cout << "Enter darkest secret: ";
+        std::getline(std::cin, darkestSecret);
 
-    Contact newContact(firstName, lastName, nickName, phoneNumber, darkestSecret);
-    addContact(newContact);
+        if (firstName.empty() || lastName.empty() || nickName.empty() || phoneNumber.empty() || darkestSecret.empty())
+        {
+            std::cout << "Error\nAt least one input is empty !" << std::endl;
+            break;
+        }
+        else
+        {
+            Contact newContact(firstName, lastName, nickName, phoneNumber, darkestSecret);
+            addContact(newContact);
+            break;
+        }
+    }
 }
 
 void    PhoneBook::displayContacts()
@@ -114,8 +121,13 @@ void    PhoneBook::mainMenu()
             createContact();
         else if (input == "SEARCH")
         {
-            displayContacts();
-            displayDetailedContact();
+            if (_index)
+            {
+                displayContacts();
+                displayDetailedContact();
+            }
+            else
+                std::cout << "Error\nNo contacts available" << std::endl;
         }
         else if (input == "EXIT")
             return;

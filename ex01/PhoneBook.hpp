@@ -7,20 +7,20 @@
 
 class PhoneBook
 {
-    private:
-        Contact _contacts[PHONEBOOK_SIZE];
-        int     _index;
-    
     public:
         PhoneBook(void);
         ~PhoneBook(void);
-        void            displayMessage() const;
+
+        void            mainMenu();
         void            createContact();
         void            addContact(Contact &contact);
         void            displayContacts();
         void            displayDetailedContact();
-        void            mainMenu();
         std::string     transformInput(const std::string &input);
+
+    private:
+        Contact _contacts[PHONEBOOK_SIZE];
+        int     _index;
 };
 
 #endif

@@ -16,8 +16,8 @@ class Contact
         std::string _darkestSecret;
     
     public:
-        // Contact() : _firstName(""), _lastName(""), _nickName(""), _phoneNumber(""), _darkestSecret("") {}
-        Contact(void){};
+        Contact() : _firstName(""), _lastName(""), _nickName(""), _phoneNumber(""), _darkestSecret("") {}
+        // Contact(void){};
         Contact(const std::string &firstName, const std::string &lastName, const std::string &nickName,
 			const std::string &phoneNumber, const std::string &darkestSecret)
 		: _firstName(firstName), _lastName(lastName), _nickName(nickName), _phoneNumber(phoneNumber),
